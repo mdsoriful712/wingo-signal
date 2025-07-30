@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WinGo Signal Generator</title>
+  <style>
+    body {
+      background-color: #0f172a;
+      color: white;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    h1 {
+      color: #38bdf8;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 20px;
+      background-color: #22c55e;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #16a34a;
+    }
+    #signalResult {
+      margin-top: 30px;
+      font-size: 28px;
+      font-weight: bold;
+      color: #facc15;
+    }
+  </style>
+</head>
+<body>
+  <h1>WinGo Signal Generator</h1>
+  <button onclick="generateSignal()">Get Signal</button>
+  <div id="signalResult"></div>
+
+  <script>
+    function generateSignal() {
+      const signals = ["BIG", "SMALL", "GREEN"];
+      const weights = [0.4, 0.4, 0.2];
+
+      const rand = Math.random();
+      let total = 0;
+      let selectedSignal = "";
+
+      for (let i = 0; i < signals.length; i++) {
+        total += weights[i];
+        if (rand <= total) {
+          selectedSignal = signals[i];
+          break;
+        }
+      }
+
+      document.getElementById("signalResult").innerText = `Signal: ${selectedSignal}`;
+    }
+  </script>
+</body>
+</html>
